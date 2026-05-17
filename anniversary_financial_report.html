@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Anniversary Committee 2025 – Financial Report</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #C9A84C;
+    --gold-light: #F0D080;
+    --dark: #0D0D0D;
+    --dark2: #181818;
+    --dark3: #222222;
+    --border: #333;
+    --text: #E8E0D0;
+    --muted: #888;
+    --green: #4CAF50;
+    --red: #E05555;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:var(--dark); color:var(--text); font-family:'DM Sans',sans-serif; min-height:100vh; padding:24px 16px 60px; }
+
+  .header { text-align:center; padding:36px 0 24px; border-bottom:1px solid var(--border); margin-bottom:32px; }
+  .header .tag { font-family:'DM Mono',monospace; font-size:11px; letter-spacing:3px; color:var(--gold); text-transform:uppercase; margin-bottom:10px; }
+  .header h1 { font-family:'Playfair Display',serif; font-size:clamp(22px,5vw,36px); color:var(--gold-light); line-height:1.2; margin-bottom:6px; }
+  .header .sub { font-size:13px; color:var(--muted); font-family:'DM Mono',monospace; }
+
+  .summary-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(140px,1fr)); gap:12px; margin-bottom:32px; }
+  .card { background:var(--dark2); border:1px solid var(--border); border-radius:8px; padding:16px 14px; text-align:center; }
+  .card.highlight { border-color:var(--gold); }
+  .card.green-card { border-color:var(--green); }
+  .card.red-card { border-color:var(--red); }
+  .card .label { font-size:10px; letter-spacing:2px; color:var(--muted); text-transform:uppercase; font-family:'DM Mono',monospace; margin-bottom:8px; }
+  .card .amount { font-family:'Playfair Display',serif; font-size:20px; font-weight:700; }
+  .card.highlight .amount { color:var(--gold-light); }
+  .card.green-card .amount { color:var(--green); }
+  .card.red-card .amount { color:var(--red); }
+  .card .note { font-size:10px; color:var(--muted); margin-top:4px; }
+
+  .section { margin-bottom:36px; }
+  .section-title { font-family:'Playfair Display',serif; font-size:18px; color:var(--gold); border-bottom:1px solid var(--border); padding-bottom:8px; margin-bottom:16px; display:flex; justify-content:space-between; align-items:center; }
+  .section-title .total-tag { font-family:'DM Mono',monospace; font-size:13px; color:var(--gold-light); font-weight:500; }
+
+  table { width:100%; border-collapse:collapse; font-size:13px; }
+  thead th { background:var(--dark3); color:var(--muted); font-family:'DM Mono',monospace; font-size:10px; letter-spacing:1.5px; text-transform:uppercase; padding:10px; text-align:left; border-bottom:1px solid var(--border); }
+  tbody tr { border-bottom:1px solid #2a2a2a; }
+  tbody tr:hover { background:var(--dark2); }
+  tbody td { padding:9px 10px; vertical-align:top; line-height:1.4; }
+  .td-num { color:var(--muted); font-family:'DM Mono',monospace; font-size:11px; width:32px; }
+  .td-name { color:var(--text); }
+  .note-badge { display:inline-block; font-size:9px; background:#2a2a1a; color:var(--gold); border:1px solid var(--gold); border-radius:3px; padding:1px 5px; margin-left:6px; vertical-align:middle; }
+  .td-amount { font-family:'DM Mono',monospace; font-size:13px; text-align:right; white-space:nowrap; }
+  .amount-green { color:var(--green); }
+  .amount-gold { color:var(--gold-light); }
+  .amount-red { color:var(--red); }
+  .row-special { background:#1a1800 !important; }
+  .row-special td { border-bottom:1px solid #3a3600; }
+  .subtotal-row { text-align:right; padding:10px; font-family:'DM Mono',monospace; font-size:13px; border-top:1px solid var(--border); }
+  .expense-source { font-size:10px; color:var(--muted); font-style:italic; }
+  .income-banner { background:#0d1a0d; border:1px solid var(--green); border-radius:8px; padding:14px 16px; display:flex; justify-content:space-between; align-items:center; margin-bottom:32px; }
+  .balance-box { background:var(--dark2); border:2px solid var(--gold); border-radius:10px; padding:20px; text-align:center; margin-top:32px; }
+  .balance-box .bl { font-family:'DM Mono',monospace; font-size:11px; letter-spacing:2px; color:var(--muted); text-transform:uppercase; margin-bottom:8px; }
+  .balance-box .bl-amount { font-family:'Playfair Display',serif; font-size:32px; color:var(--gold-light); margin-bottom:6px; }
+  .balance-box .bl-sub { font-size:12px; color:var(--muted); margin-bottom:16px; }
+  .balance-breakdown { display:flex; justify-content:center; gap:40px; flex-wrap:wrap; margin-top:12px; }
+  .balance-item .bi-label { font-size:10px; letter-spacing:2px; color:var(--muted); text-transform:uppercase; font-family:'DM Mono',monospace; margin-bottom:4px; }
+  .balance-item .bi-amount { font-family:'Playfair Display',serif; font-size:18px; }
+  .balance-op { font-size:24px; color:var(--border); align-self:center; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="tag">Anniversary Committee 2025/2026</div>
+  <h1>Financial Secretary Report</h1>
+  <div class="sub">Girdle Levy Collection &amp; Expenditure — May 8–10, 2026</div>
+</div>
+
+<div class="summary-grid">
+  <div class="card green-card">
+    <div class="label">Members' Levy</div>
+    <div class="amount">&#8358;175,000</div>
+    <div class="note">65 entries</div>
+  </div>
+  <div class="card green-card">
+    <div class="label">Additional Income</div>
+    <div class="amount">&#8358;133,000</div>
+    <div class="note">Treasurer + Chairman + Donation</div>
+  </div>
+  <div class="card highlight">
+    <div class="label">Total Income</div>
+    <div class="amount">&#8358;308,000</div>
+    <div class="note">All sources</div>
+  </div>
+  <div class="card red-card">
+    <div class="label">Total Expenses</div>
+    <div class="amount">&#8358;278,600</div>
+    <div class="note">20 items</div>
+  </div>
+  <div class="card highlight">
+    <div class="label">Balance</div>
+    <div class="amount">&#8358;29,400</div>
+    <div class="note">Remaining</div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-title">A. Girdle Levy — Members' Contributions <span class="total-tag">&#8358;175,000</span></div>
+  <table>
+    <thead><tr><th>#</th><th>Name</th><th style="text-align:right">Amount</th></tr></thead>
+    <tbody>
+      <tr><td class="td-num">1</td><td class="td-name">DEBORAH OLUKOREDE ADEYEMO</td><td class="td-amount amount-green">2,500</td></tr>
+      <tr><td class="td-num">2</td><td class="td-name">ABOSEDE CHRISTIANA ASHADE</td><td class="td-amount amount-green">2,500</td></tr>
+      <tr><td class="td-num">3</td><td class="td-name">KEHINDE AZEEZAT TALABI</td><td class="td-amount amount-green">2,500</td></tr>
+      <tr><td class="td-num">4</td><td class="td-name">ADERINSOLA ROFIAT OGUNWALE</td><td class="td-amount amount-green">2,500</td></tr>
+      <tr><td class="td-num">5</td><td class="td-name">BOLANLE FLORENCE ELEMIDE</td><td class="td-amount amount-green">2,500</td></tr>
+      <tr><td class="td-num">6</td><td class="td-name">EMMANUEL OLUWATIMILEHIN SONAIKE</td><td class="td-amount amount-green">2,500</td></tr>
+      <tr><td class="td-num">7</td><td class="td-name">TAIWO OLAMIDE SAKA</td><td class="td-amount amount-green">2,500</td></tr>
+      <tr><td class="td-num">8</td><td class="td-name">OLUWADARASIMI AKINYEJU SERAH</td><td class="td-amount amount-green">2,500</td></tr>
+      <tr><td class="td-num">9</td><td class="td-name">OMOLADE MOYEGE EWEJOBI</td><td class="td-amount amount-green">2,500</td></tr>
+      <tr><td class="td-num">10</td><td class="td-name">RACHEL ABIMBOLA FARONBI</td><td class="td-amount amount-green">2,500</td></tr>
+      <tr><td class="td-num">11</td><td class="td-name">ABOSEDE OYEBODE</td><td class="td-amount amount-green">2,500</td></tr>
+      <tr><td class="td-num">12</td><td class="td-name">OLUWAFEMI DAVID TAIWO</td><td class="td-amount amount-green">2,500</td></tr>
+      <tr><td class="td-num">13</td><td class="td-name">MOYOSORE ARALOLA ADETOMI</td><td class="td-amount amount-green">2,500</td></tr>
+      <tr><td class="td-num">14</td><td class="td-name">KEHINDE DEBORAH ADEDIRAN</td><td class="td-amount amount-green">2,500</td></tr>
+      <tr><td class="td-num">15</td><td class="td-name">ANUOLUWAPO DAMILOLA</td><td class="td-amount amount-green">2,500</td></tr>
+      <tr><td class="td-num">16</td><td class="td-name">ADEDOTUN REGINA ODUNIYI</td><td class="td-amount amount-green">2,500</td></tr>
+      <tr><td class="td-num">17</td><td class="td-name">JUBRIL MARTINS OREBANJO</td><td class="td-amount amount-green">2,500</td></tr>
+      <tr><td class="td-num">18</td><td class="td-name">BOLUWATIFE GLORIA PETER</td><td class="td-amount amount-green">2,500</td></tr>
+      <tr class="row-special"><td class="td-num">19</td><td class="td-name">TIMILEYIN SAMUEL BOLAJI <span class="note-badge">x3</span></td><td class="td-amount amount-gold">7,500</td></tr>
+      <tr><td class="td-num">20</td><td class="td-name">OLUWATIFUNMI ELIZABETH ADEGBENRO</td><td class="td-amount amount-green">2,500</td></tr>
+      <tr><td class="td-num">21</td><td class="td-name">ENIOLA DEBORAH POPOOLA</td><td class="td-amount amount-green">2,500</td></tr>
+      <tr><td class="td-num">22</td><td class="td-name">TEMIDAYO GABRIEL OGUNDIPE</td><td class="td-amount amount-green">2,500</td></tr>
+      <tr><td class="td-num">23</td><td class="td-name">OLUWATUNMISE ADUKE BALOGUN</td><td class="td-amount amount-green">2,500</td></tr>
+      <tr><td class="td-num">24</td><td class="td-name">KEHINDE MARTHA ODUSUSI</td><td class="td-amount amount-green">2,500</td></tr>
+      <tr><td class="td-num">25</td><td class="td-name">RODIAT OLUWATOYIN AKODU</td><td class="td-amount amount-green">2,500</td></tr>
+      <tr><td class="td-num">26</td><td class="td-name">JANET ENIOLA ADELAKUN</td><td class="td-amount amount-green">2,500</td></tr>
+      <tr class="row-special"><td class="td-num">27</td><td class="td-name">ABOSEDE ELIZABETH OWOSENI <span class="note-badge">x2</span></td><td class="td-amount amount-gold">5,000</td></tr>
+      <tr><td class="td-num">28</td><td class="td-name">OYINKANSOLA OMOBOLANLE</td><td class="td-amount amount-green">2,500</td></tr>
+      <tr><td class="td-num">29</td><td class="td-name">FLORENCE OPEYEMI OLAYIWOLA</td><td class="td-amount amount-green">2,500</td></tr>
+      <tr><td class="td-num">30</td><td class="td-name">ZAINAB ADERAYO DAUDA</td><td class="td-amount amount-green">2,500</td></tr>
+      <tr><td class="td-num">31</td><td class="td-name">OREOFE AYOMIDE GEORGE</td><td class="td-amount amount-green">2,500</td></tr>
+      <tr><td class="td-num">32</td><td class="td-name">OLUWABUNMI OLAYINKA OGUNKANBI</td><td class="td-amount amount-green">2,500</td></tr>
+      <tr><td class="td-num">33</td><td class="td-name">SUSAN PRECIOUS OYEWOLE</td><td class="td-amount amount-green">2,500</td></tr>
+      <tr><td class="td-num">34</td><td class="td-name">PEACE OLAMIDE ADIGUN</td><td class="td-amount amount-green">2,500</td></tr>
+      <tr><td class="td-num">35</td><td class="td-name">AMINAT DEBORAH YEKINI</td><td class="td-amount amount-green">2,500</td></tr>
+      <tr><td class="td-num">36</td><td class="td-name">OYINDAMOLA MARY OLAGBEMI</td><td class="td-amount amount-green">2,500</td></tr>
+      <tr><td class="td-num">37</td><td class="td-name">IFEOLUWA OREOLUWA FADAIRO</td><td class="td-amount amount-green">2,500</td></tr>
+      <tr><td class="td-num">38</td><td class="td-name">TEMITOPE ESTHER ODUBELA</td><td class="td-amount amount-green">2,500</td></tr>
+      <tr><td class="td-num">39</td><td class="td-name">KEHINDE OLUWAFEMI</td><td class="td-amount amount-green">2,500</td></tr>
+      <tr><td class="td-num">40</td><td class="td-name">ANUOLUWAPO OLAWUNMI OMOTOSHO</td><td class="td-amount amount-green">2,500</td></tr>
+      <tr><td class="td-num">41</td><td class="td-name">ESTHER OYINDAMOLA OYETOLA</td><td class="td-amount amount-green">2,500</td></tr>
+      <tr><td class="td-num">42</td><td class="td-name">OLUWATOSIN IBUKUN OGUNTIMILEHIN</td><td class="td-amount amount-green">2,500</td></tr>
+      <tr><td class="td-num">43</td><td class="td-name">OLUWANIFEMI TOLUWALASE AKINYEMI</td><td class="td-amount amount-green">2,500</td></tr>
+      <tr><td class="td-num">44</td><td class="td-name">DORCAS ODUNAYO ADESANYA</td><td class="td-amount amount-green">2,500</td></tr>
+      <tr class="row-special"><td class="td-num">45</td><td class="td-name">ANONYMOUS <span class="note-badge">No Name</span></td><td class="td-amount amount-green">2,500</td></tr>
+      <tr><td class="td-num">46</td><td class="td-name">TOBILOBA AYOMIDE ATANDA</td><td class="td-amount amount-green">2,500</td></tr>
+      <tr><td class="td-num">47</td><td class="td-name">KHADIJA ODUNAYO OGUNGBE</td><td class="td-amount amount-green">2,500</td></tr>
+      <tr><td class="td-num">48</td><td class="td-name">TOLUWANI EMMANUEL</td><td class="td-amount amount-green">2,500</td></tr>
+      <tr><td class="td-num">49</td><td class="td-name">RUTH OLUWATOMIWA TIJANI</td><td class="td-amount amount-green">2,500</td></tr>
+      <tr><td class="td-num">50</td><td class="td-name">RASHEEDAT TAIWO LAWAL</td><td class="td-amount amount-green">2,500</td></tr>
+      <tr><td class="td-num">51</td><td class="td-name">IMISIOLUWA PRECIOUS AKINBOWALE</td><td class="td-amount amount-green">2,500</td></tr>
+      <tr><td class="td-num">52</td><td class="td-name">IFEOLUWA OYINKANSOLA AYANMOLA</td><td class="td-amount amount-green">2,500</td></tr>
+      <tr><td class="td-num">53</td><td class="td-name">IBRAHIM OLUMILEKAN ANIMASHAUN</td><td class="td-amount amount-green">2,500</td></tr>
+      <tr class="row-special"><td class="td-num">54</td><td class="td-name">GBEMISOLA OLUWABUNMI <span class="note-badge">x2</span></td><td class="td-amount amount-gold">5,000</td></tr>
+      <tr><td class="td-num">55</td><td class="td-name">OYINDAMOLA ELIZABETH AKINDIPE</td><td class="td-amount amount-green">2,500</td></tr>
+      <tr class="row-special"><td class="td-num">56</td><td class="td-name">OLOLADE OLUWATOBILOBA AYANBODE <span class="note-badge">x2</span></td><td class="td-amount amount-gold">5,000</td></tr>
+      <tr><td class="td-num">57</td><td class="td-name">ADELEKE FUNSHO</td><td class="td-amount amount-green">2,500</td></tr>
+      <tr><td class="td-num">58</td><td class="td-name">ELIZABETH OLOLADE</td><td class="td-amount amount-green">2,500</td></tr>
+      <tr><td class="td-num">59</td><td class="td-name">MARY AMOPE AKINYEMI</td><td class="td-amount amount-green">2,500</td></tr>
+      <tr><td class="td-num">60</td><td class="td-name">SHODIYA OYINDAMOLA MISTURA</td><td class="td-amount amount-green">2,500</td></tr>
+      <tr><td class="td-num">61</td><td class="td-name">GRACE OLORUNPONMI ISAIAH</td><td class="td-amount amount-green">2,500</td></tr>
+      <tr><td class="td-num">62</td><td class="td-name">ONAMILA GBEMINIYI TALABI</td><td class="td-amount amount-green">2,500</td></tr>
+      <tr><td class="td-num">63</td><td class="td-name">MUBARAK OLAMILEKAN BELLO</td><td class="td-amount amount-green">2,500</td></tr>
+      <tr><td class="td-num">64</td><td class="td-name">OLUWADEMILADE PRECIOUS FADAIRO</td><td class="td-amount amount-green">2,500</td></tr>
+      <tr><td class="td-num">65</td><td class="td-name">IDOWU JOHNSON FOLORUNSHO</td><td class="td-amount amount-green">2,500</td></tr>
+    </tbody>
+  </table>
+  <div class="subtotal-row" style="color:var(--green);">Subtotal (A): &#8358;175,000</div>
+</div>
+
+<div class="section">
+  <div class="section-title">B. Additional Income Received <span class="total-tag">&#8358;133,000</span></div>
+  <table>
+    <thead><tr><th>#</th><th>Source</th><th>Description</th><th style="text-align:right">Amount</th></tr></thead>
+    <tbody>
+      <tr class="row-special">
+        <td class="td-num">i</td>
+        <td class="td-name"><strong>Anniversary Treasurer</strong></td>
+        <td class="td-name" style="font-size:11px;color:var(--muted)">Lump sum contribution to girdle fund</td>
+        <td class="td-amount amount-gold">27,000</td>
+      </tr>
+      <tr class="row-special">
+        <td class="td-num">ii</td>
+        <td class="td-name"><strong>Anniversary Chairman</strong></td>
+        <td class="td-name" style="font-size:11px;color:var(--muted)">Top-up funding from chairman</td>
+        <td class="td-amount amount-gold">100,000</td>
+      </tr>
+      <tr class="row-special">
+        <td class="td-num">iii</td>
+        <td class="td-name"><strong>SAMUEL OLUWATIMILEHIN OLUGA</strong></td>
+        <td class="td-name" style="font-size:11px;color:var(--muted)">Personal donation – Seraphic Night</td>
+        <td class="td-amount amount-gold">6,000</td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="subtotal-row" style="color:var(--gold-light);">Subtotal (B): &#8358;133,000</div>
+</div>
+
+<div class="income-banner">
+  <span style="font-family:'DM Mono',monospace;font-size:12px;letter-spacing:2px;color:var(--green);text-transform:uppercase;">Total Income (A + B)</span>
+  <span style="font-family:'Playfair Display',serif;font-size:22px;color:#6fcf6f;">&#8358;308,000</span>
+</div>
+
+<div class="section">
+  <div class="section-title">C. Expenditure — Items Purchased / Disbursed <span class="total-tag" style="color:var(--red)">&#8358;278,600</span></div>
+  <table>
+    <thead><tr><th>#</th><th>Item / Purpose</th><th>Recipient</th><th style="text-align:right">Amount</th></tr></thead>
+    <tbody>
+      <tr><td class="td-num">1</td><td class="td-name">Decorating unit</td><td class="td-name" style="font-size:11px;">Ifeoluwa O. Ayanmola<br><span class="expense-source">Palmpay · 9168730189</span></td><td class="td-amount amount-red">20,000</td></tr>
+      <tr><td class="td-num">2</td><td class="td-name">Pepper and onions (market)</td><td class="td-name" style="font-size:11px;">Olamilekan I. Akinbile<br><span class="expense-source">Opay · 8163754323</span></td><td class="td-amount amount-red">70,000</td></tr>
+      <tr><td class="td-num">3</td><td class="td-name">2 paint of rice – Friday market</td><td class="td-name" style="font-size:11px;"><span class="expense-source">Market purchase</span></td><td class="td-amount amount-red">11,000</td></tr>
+      <tr><td class="td-num">4</td><td class="td-name">Light (electricity)</td><td class="td-name" style="font-size:11px;">Oreoluwa T. Adegoke<br><span class="expense-source">Opay · 7045277547</span></td><td class="td-amount amount-red">10,000</td></tr>
+      <tr><td class="td-num">5</td><td class="td-name">ZCity Commercial (supplies)</td><td class="td-name" style="font-size:11px;">ZCity Commercial Ent<br><span class="expense-source">Moniepoint · 4000138607</span></td><td class="td-amount amount-red">12,000</td></tr>
+      <tr><td class="td-num">6</td><td class="td-name">Dada Abdulrahman payment</td><td class="td-name" style="font-size:11px;">Dada Abdulrahman Olayinka<br><span class="expense-source">Acct: 8101635429</span></td><td class="td-amount amount-red">3,100</td></tr>
+      <tr><td class="td-num">7</td><td class="td-name">Ice Block</td><td class="td-name" style="font-size:11px;">Opeyemi Mary Isaiah<br><span class="expense-source">Opay · 815 894 9920</span></td><td class="td-amount amount-red">2,400</td></tr>
+      <tr><td class="td-num">8</td><td class="td-name">Gen service (Girdle)</td><td class="td-name" style="font-size:11px;">Akeem L. Bada<br><span class="expense-source">Opay · 906 504 3737</span></td><td class="td-amount amount-red">500</td></tr>
+      <tr><td class="td-num">9</td><td class="td-name">Remaining TF – Ijebu to Oru</td><td class="td-name" style="font-size:11px;">Adeshile I. Aare<br><span class="expense-source">Opay · 805 247 0244</span></td><td class="td-amount amount-red">1,200</td></tr>
+      <tr><td class="td-num">10</td><td class="td-name">Market – Friday add-up</td><td class="td-name" style="font-size:11px;">Olayimika L. Olatunji<br><span class="expense-source">Opay · 913 026 0923</span></td><td class="td-amount amount-red">6,500</td></tr>
+      <tr><td class="td-num">11</td><td class="td-name">Fuel</td><td class="td-name" style="font-size:11px;">TM Petroleum Ltd 2<br><span class="expense-source">ALAT NIP · 8670662698</span></td><td class="td-amount amount-red">20,000</td></tr>
+      <tr><td class="td-num">12</td><td class="td-name">Fuel (top-up)</td><td class="td-name" style="font-size:11px;">TM Petroleum Ltd 2<br><span class="expense-source">Firstmonie · 8670662698</span></td><td class="td-amount amount-red">10,000</td></tr>
+      <tr><td class="td-num">13</td><td class="td-name">Wood and TF</td><td class="td-name" style="font-size:11px;">Primeflare Oil &amp; Gas Ltd<br><span class="expense-source">Acct: 5065526925</span></td><td class="td-amount amount-red">6,200</td></tr>
+      <tr><td class="td-num">14</td><td class="td-name">Market – Saturday</td><td class="td-name" style="font-size:11px;">Elizabeth O. Dolamu<br><span class="expense-source">Opay · 7061972053</span></td><td class="td-amount amount-red">21,000</td></tr>
+      <tr><td class="td-num">15</td><td class="td-name">Gen service (for go)</td><td class="td-name" style="font-size:11px;">Akeem L. Bada<br><span class="expense-source">Opay · 906 504 3737</span></td><td class="td-amount amount-red">500</td></tr>
+      <tr><td class="td-num">16</td><td class="td-name">Salt and Matches</td><td class="td-name" style="font-size:11px;">Sidikatu O. Amodu<br><span class="expense-source">Monie Point · 5199852204</span></td><td class="td-amount amount-red">800</td></tr>
+      <tr><td class="td-num">17</td><td class="td-name">Chair part payment</td><td class="td-name" style="font-size:11px;">Moruf A. Olasunkanmi<br><span class="expense-source">GTBank · 0050478577</span></td><td class="td-amount amount-red">20,000</td></tr>
+      <tr><td class="td-num">18</td><td class="td-name">Drinks (committee members)</td><td class="td-name" style="font-size:11px;">Risikat A. Agbetu<br><span class="expense-source">Polaris · 3048201094</span></td><td class="td-amount amount-red">59,400</td></tr>
+      <tr><td class="td-num">19</td><td class="td-name">HOD Academy drink</td><td class="td-name" style="font-size:11px;">Olayimika L. Olatunji<br><span class="expense-source">Opay · 913 026 0923</span></td><td class="td-amount amount-red">1,500</td></tr>
+      <tr><td class="td-num">20</td><td class="td-name">Meat &amp; TF <span class="note-badge">Est.</span></td><td class="td-name" style="font-size:11px;"><span class="expense-source">Confirm actual amount</span></td><td class="td-amount amount-red">2,500</td></tr>
+    </tbody>
+  </table>
+  <div class="subtotal-row" style="color:var(--red);">Total Expenses (C): &#8358;278,600</div>
+  <div style="font-size:11px;color:var(--muted);padding:8px 10px;font-style:italic;">* Item 20 (Meat &amp; TF) is estimated. Confirm actual amount to update balance.</div>
+</div>
+
+<div class="balance-box">
+  <div class="bl">Balance Remaining</div>
+  <div class="bl-amount">&#8358;29,400</div>
+  <div class="bl-sub">Total Income (&#8358;308,000) &minus; Total Expenses (&#8358;278,600)</div>
+  <div class="balance-breakdown">
+    <div class="balance-item"><div class="bi-label">Total Income</div><div class="bi-amount" style="color:var(--green);">&#8358;308,000</div></div>
+    <div class="balance-op">&minus;</div>
+    <div class="balance-item"><div class="bi-label">Total Expenses</div><div class="bi-amount" style="color:var(--red);">&#8358;278,600</div></div>
+    <div class="balance-op">=</div>
+    <div class="balance-item"><div class="bi-label">Balance</div><div class="bi-amount" style="color:var(--gold-light);">&#8358;29,400</div></div>
+  </div>
+</div>
+
+<div style="text-align:center;margin-top:28px;font-size:11px;color:var(--muted);font-family:'DM Mono',monospace;letter-spacing:1px;">
+  Prepared by: SAMUEL PEACE ADUBIARO — Financial Secretary<br>
+  Anniversary Committee 2025/2026 &middot; Generated May 2026
+</div>
+
+</body>
+</html>
