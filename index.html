@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#ffcc00">
+  <title>25th Anniversary Data Celebration</title>
+  <link rel="stylesheet" href="assets/css/app.css?v=1">
+</head>
+<body>
+  <main class="app-shell">
+    <section id="landing" class="screen active">
+      <div class="hero-card">
+        <div class="brand-strip">25TH ANNIVERSARY CELEBRATION</div>
+        <div class="hero-visual">
+          <div class="hero-badge">25 YEARS</div>
+          <div class="hero-copy-block">
+            <span class="mini">SPECIAL DATA CELEBRATION</span>
+            <h1>Get Up To 25GB</h1>
+            <p>Select your preferred package and continue to activate.</p>
+          </div>
+        </div>
+
+        <div class="package-grid" id="packageGrid">
+          <button class="package-card selected" data-package="25GB">
+            <strong>25GB</strong>
+            <span>Anniversary Package</span>
+          </button>
+          <button class="package-card" data-package="15GB">
+            <strong>15GB</strong>
+            <span>Bonus Package</span>
+          </button>
+          <button class="package-card" data-package="10GB">
+            <strong>10GB</strong>
+            <span>Standard Package</span>
+          </button>
+        </div>
+
+        <button id="startBtn" class="cta primary">GET 25GB NOW</button>
+      </div>
+
+      <div id="landingComments"></div>
+    </section>
+
+    <section id="processing" class="screen">
+      <div class="panel center-panel">
+        <div class="spinner-ring"></div>
+        <h2>Checking Availability</h2>
+        <p>Preparing your selected package...</p>
+        <div class="load-track"><div id="loadBar"></div></div>
+        <strong id="loadPercent">0%</strong>
+      </div>
+    </section>
+
+    <section id="registration" class="screen">
+      <div class="panel">
+        <div class="step-pill">STEP 2 OF 3</div>
+        <h2>Activate Your Package</h2>
+        <p class="muted">Enter your active phone number to continue.</p>
+
+        <div class="selected-summary">
+          <span>Selected Package</span>
+          <strong id="selectedPackageText">25GB</strong>
+        </div>
+
+        <label for="phoneInput">Phone Number</label>
+        <input id="phoneInput" class="input" inputmode="numeric" maxlength="11" placeholder="08012345678">
+        <div id="phoneError" class="error">Enter a 10 or 11 digit phone number.</div>
+
+        <button id="activateBtn" class="cta primary">ACTIVATE NOW</button>
+      </div>
+      <div id="registrationComments"></div>
+    </section>
+
+    <section id="share" class="screen">
+      <div class="panel">
+        <div class="step-pill">FINAL STEP</div>
+        <h2>Complete Your Activation</h2>
+        <p class="muted">Share the celebration message on WhatsApp to complete your progress.</p>
+
+        <div class="selected-summary">
+          <span>Package</span>
+          <strong id="sharePackageText">25GB</strong>
+        </div>
+
+        <div class="progress-head"><span>Activation Progress</span><strong id="sharePercent">0%</strong></div>
+        <div class="progress-track"><div id="shareBar"></div></div>
+        <div id="shareCount" class="share-count">0 of 5 shares completed</div>
+
+        <button id="shareBtn" class="cta whatsapp">SHARE ON WHATSAPP</button>
+        <button id="finishBtn" class="cta primary" disabled>COMPLETE ACTIVATION</button>
+      </div>
+      <div id="shareComments"></div>
+    </section>
+
+    <section id="final" class="screen">
+      <div class="panel center-panel">
+        <div class="success-icon">✓</div>
+        <h2>Activation Completed</h2>
+        <p>Your selected package is ready for the next step.</p>
+        <div class="selected-summary">
+          <span>Selected Package</span>
+          <strong id="finalPackageText">25GB</strong>
+        </div>
+        <button id="finalBtn" class="cta primary">CONTINUE</button>
+      </div>
+      <div id="finalComments"></div>
+    </section>
+  </main>
+
+  <script src="assets/js/config.js?v=1"></script>
+  <script src="assets/js/comments.js?v=1"></script>
+  <script src="assets/js/sharing.js?v=1"></script>
+  <script src="assets/js/app.js?v=1"></script>
+</body>
+</html>
