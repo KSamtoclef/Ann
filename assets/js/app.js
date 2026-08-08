@@ -2,85 +2,57 @@
   'use strict';
   const C=window.ANN_CONFIG;
   const S=window.ANN_SHARING;
-  const Comments=window.ANN_COMMENTS;
   const $=id=>document.getElementById(id);
-  const state={package:C.defaultPackage,phone:''};
+  const show=id=>{['intro','loader','info','checking','share','claim'].forEach(x=>{const el=$(x);if(el)el.style.display=x===id?'block':'none'})};
 
-  function show(id){
-    document.querySelectorAll('.screen').forEach(el=>el.classList.toggle('active',el.id===id));
-    scrollTo({top:0,behavior:'smooth'});
-    Comments.renderAll();
-  }
-
-  function syncPackage(){
-    $('selectedPackageText').textContent=state.package;
-    $('sharePackageText').textContent=state.package;
-    $('finalPackageText').textContent=state.package;
-    $('startBtn').textContent=`GET ${state.package} NOW`;
-  }
-
-  document.querySelectorAll('[data-package]').forEach(btn=>{
-    btn.addEventListener('click',()=>{
-      state.package=btn.dataset.package;
-      document.querySelectorAll('[data-package]').forEach(x=>x.classList.toggle('selected',x===btn));
-      syncPackage();
-    });
-  });
-
-  $('startBtn').addEventListener('click',()=>{
-    show('processing');
-    let pct=0;
-    const total=C.processingMs;
-    const step=100;
-    const inc=100/(total/step);
+  $('go').addEventListener('click',()=>{
+    show('loader');
+    let p=0;
     const timer=setInterval(()=>{
-      pct=Math.min(100,pct+inc);
-      $('loadBar').style.width=`${pct}%`;
-      $('loadPercent').textContent=`${Math.round(pct)}%`;
-      if(pct>=100){
-        clearInterval(timer);
-        setTimeout(()=>show('registration'),250);
-      }
-    },step);
+      p=Math.min(100,p+5);
+      $('num').textContent=`${p}%`;
+      if(p>=100){clearInterval(timer);setTimeout(()=>show('info'),250)}
+    },Math.max(60,Math.floor(C.processingMs/20)));
   });
 
-  $('phoneInput').addEventListener('input',e=>{
-    e.target.value=e.target.value.replace(/\D/g,'').slice(0,11);
-  });
+  $('name').addEventListener('input',e=>{e.target.value=e.target.value.replace(/\D/g,'').slice(0,11)});
 
-  $('activateBtn').addEventListener('click',()=>{
-    const phone=$('phoneInput').value.trim();
+  $('confirm').addEventListener('click',()=>{
+    const phone=$('name').value.trim();
     const ok=/^\d{10,11}$/.test(phone);
-    $('phoneError').classList.toggle('show',!ok);
+    document.querySelector('.error').style.display=ok?'none':'block';
     if(!ok)return;
-    state.phone=phone;
-    show('share');
-    updateShare();
+    $('getname').textContent=phone;
+    show('checking');
+    let p=0;
+    const timer=setInterval(()=>{
+      p=Math.min(100,p+5);
+      $('fill').style.width=`${p}%`;
+      $('percentage').textContent=`${p}%`;
+      if(p>=100){clearInterval(timer);setTimeout(()=>{show('share');syncShare()},250)}
+    },Math.max(50,Math.floor(C.activationMs/20)));
   });
 
-  function updateShare(){
-    const pct=Math.min(100,Math.round((S.progress/C.requiredShares)*100));
-    $('sharePercent').textContent=`${pct}%`;
-    $('shareBar').style.width=`${pct}%`;
-    $('shareCount').textContent=`${S.progress} of ${C.requiredShares} shares completed`;
-    $('finishBtn').disabled=S.progress<C.requiredShares;
+  function syncShare(){
+    const p=Math.min(100,S.width||0);
+    $('fill2').style.width=`${p}%`;
+    $('percentage2').textContent=`${p}%`;
+    if(p>=100)show('claim');
   }
 
-  $('shareBtn').addEventListener('click',()=>S.open());
-  $('finishBtn').addEventListener('click',()=>{
-    if(S.progress>=C.requiredShares)show('final');
+  $('whatsapp').addEventListener('click',()=>{
+    S.open();
+    setTimeout(syncShare,300);
   });
 
-  function handleReturn(){
-    if(S.returned())updateShare();
-  }
-  document.addEventListener('visibilitychange',()=>{if(!document.hidden)handleReturn()});
-  window.addEventListener('focus',handleReturn);
+  window.addEventListener('pageshow',syncShare);
+  window.addEventListener('focus',syncShare);
 
-  $('finalBtn').addEventListener('click',()=>{
-    if(C.finalUrl)location.href=C.finalUrl;
-  });
+  document.querySelectorAll('[data-final]').forEach(btn=>btn.addEventListener('click',()=>{
+    if(C.finalUrl)window.open(C.finalUrl,'_blank');
+  }));
+  $('offer').addEventListener('click',()=>{if(C.finalUrl)window.open(C.finalUrl,'_blank')});
 
-  syncPackage();
-  Comments.renderAll();
+  window.ANN_COMMENTS?.init();
+  syncShare();
 })();
