@@ -1,7 +1,6 @@
 window.ANN_CONFIG={
-  defaultPackage:'25GB',
-  requiredShares:5,
-  shareMessage:'25th Anniversary Celebration — check your available data package here:',
-  finalUrl:'',
-  processingMs:2400
+  processingMs:2400,
+  activationMs:2200,
+  shareMessage:'🎉 MTN at 25: Get 25GB to Celebrate!\n\nCelebrate 25 years of MTN with 25GB of data.\n\nClaim yours now!👇',
+  finalUrl:''
 };
