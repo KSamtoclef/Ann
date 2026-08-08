@@ -41,14 +41,17 @@
     </div>
 
     <div id="info">
-      <p class="title">ENTER YOUR MOBILE NUMBER BELOW</p>
+      <p class="title">ENTER YOUR MOBILE NUMBER AND EMAIL BELOW</p>
       <div class="phone">
         <br>
         <center><input type="text" placeholder="Type Your Number Here" id="name" inputmode="numeric" maxlength="11"></center>
+        <br>
+        <center><input type="email" placeholder="Enter Your Email Address" id="email" inputmode="email" autocomplete="email"></center>
         <br><br>
         <button id="confirm"><font color="black">ACTIVATE</font></button>
       </div>
-      <p class="error">Please enter your mobile number</p>
+      <p class="error" id="phoneError">Please enter your mobile number</p>
+      <p class="error" id="emailError">Please enter a valid email address</p>
     </div>
 
     <div id="checking">
@@ -102,6 +105,6 @@
   <script src="assets/js/config.js?v=2"></script>
   <script src="assets/js/comments.js?v=2"></script>
   <script src="assets/js/sharing.js?v=2"></script>
-  <script src="assets/js/app.js?v=2"></script>
+  <script src="assets/js/app.js?v=3"></script>
 </body>
 </html>
