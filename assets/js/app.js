@@ -19,9 +19,14 @@
 
   $('confirm').addEventListener('click',()=>{
     const phone=$('name').value.trim();
-    const ok=/^\d{10,11}$/.test(phone);
-    document.querySelector('.error').style.display=ok?'none':'block';
-    if(!ok)return;
+    const email=$('email').value.trim();
+    const phoneOk=/^\d{10,11}$/.test(phone);
+    const emailOk=/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+
+    $('phoneError').style.display=phoneOk?'none':'block';
+    $('emailError').style.display=emailOk?'none':'block';
+    if(!phoneOk||!emailOk)return;
+
     $('getname').textContent=phone;
     show('checking');
     let p=0;
