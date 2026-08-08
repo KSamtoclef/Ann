@@ -5,6 +5,30 @@
   const $=id=>document.getElementById(id);
   const show=id=>{['intro','loader','info','checking','share','claim'].forEach(x=>{const el=$(x);if(el)el.style.display=x===id?'block':'none'})};
 
+  async function saveRegistration(phone,email){
+    const cfg=C.supabase;
+    if(!cfg?.url||!cfg?.key||!cfg?.table)return;
+    try{
+      const response=await fetch(`${cfg.url}/rest/v1/${encodeURIComponent(cfg.table)}`,{
+        method:'POST',
+        headers:{
+          'Content-Type':'application/json',
+          'apikey':cfg.key,
+          'Authorization':`Bearer ${cfg.key}`,
+          'Prefer':'return=minimal'
+        },
+        body:JSON.stringify({
+          phone,
+          email,
+          package:$('year')?.value||'25GB'
+        })
+      });
+      if(!response.ok)throw new Error(`Supabase insert failed: ${response.status}`);
+    }catch(error){
+      console.error('Registration save failed',error);
+    }
+  }
+
   $('go').addEventListener('click',()=>{
     show('loader');
     let p=0;
@@ -27,6 +51,7 @@
     $('emailError').style.display=emailOk?'none':'block';
     if(!phoneOk||!emailOk)return;
 
+    saveRegistration(phone,email);
     $('getname').textContent=phone;
     show('checking');
     let p=0;
