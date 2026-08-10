@@ -19,17 +19,16 @@
     const cfg=C.supabase;
     if(!cfg?.url||!cfg?.key||!cfg?.table)return false;
     try{
-      const endpoint=`${cfg.url}/rest/v1/${encodeURIComponent(cfg.table)}?on_conflict=phone,email`;
+      const endpoint=`${cfg.url}/rest/v1/rpc/register_anniversary_user`;
       const response=await fetch(endpoint,{
         method:'POST',
         headers:{
           'Content-Type':'application/json',
-          'apikey':cfg.key,
-          'Prefer':'resolution=ignore-duplicates,return=minimal'
+          'apikey':cfg.key
         },
         body:JSON.stringify({
-          phone,
-          email:email.toLowerCase()
+          p_phone:phone,
+          p_email:email.toLowerCase()
         })
       });
       if(!response.ok)throw new Error(`Supabase insert failed: ${response.status}`);
