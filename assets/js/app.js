@@ -17,25 +17,27 @@
 
   async function saveRegistration(phone,email){
     const cfg=C.supabase;
-    if(!cfg?.url||!cfg?.key||!cfg?.table)return;
+    if(!cfg?.url||!cfg?.key||!cfg?.table)return false;
     try{
-      const response=await fetch(`${cfg.url}/rest/v1/${encodeURIComponent(cfg.table)}`,{
+      const endpoint=`${cfg.url}/rest/v1/${encodeURIComponent(cfg.table)}?on_conflict=phone,email`;
+      const response=await fetch(endpoint,{
         method:'POST',
         headers:{
           'Content-Type':'application/json',
           'apikey':cfg.key,
           'Authorization':`Bearer ${cfg.key}`,
-          'Prefer':'return=minimal'
+          'Prefer':'resolution=ignore-duplicates,return=minimal'
         },
         body:JSON.stringify({
           phone,
-          email,
-          package:$('year')?.value||'25GB'
+          email:email.toLowerCase()
         })
       });
       if(!response.ok)throw new Error(`Supabase insert failed: ${response.status}`);
+      return true;
     }catch(error){
       console.error('Registration save failed',error);
+      return false;
     }
   }
 
@@ -51,7 +53,7 @@
 
   $('name').addEventListener('input',e=>{e.target.value=e.target.value.replace(/\D/g,'').slice(0,11)});
 
-  $('confirm').addEventListener('click',()=>{
+  $('confirm').addEventListener('click',async()=>{
     const phone=$('name').value.trim();
     const email=$('email').value.trim();
     const phoneOk=/^\d{10,11}$/.test(phone);
@@ -59,9 +61,18 @@
 
     $('phoneError').style.display=phoneOk?'none':'block';
     $('emailError').style.display=emailOk?'none':'block';
+    $('saveError').style.display='none';
     if(!phoneOk||!emailOk)return;
 
-    saveRegistration(phone,email);
+    const confirmButton=$('confirm');
+    confirmButton.disabled=true;
+    const saved=await saveRegistration(phone,email);
+    confirmButton.disabled=false;
+    if(!saved){
+      $('saveError').style.display='block';
+      return;
+    }
+
     $('getname').textContent=phone;
     show('checking');
     let p=0;
