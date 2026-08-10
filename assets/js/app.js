@@ -25,7 +25,6 @@
         headers:{
           'Content-Type':'application/json',
           'apikey':cfg.key,
-          'Authorization':`Bearer ${cfg.key}`,
           'Prefer':'resolution=ignore-duplicates,return=minimal'
         },
         body:JSON.stringify({
